@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "desktopBlazorWAKicker": {
+      "commandName": "Project",
+      "commandLineArgs": "10101 \"C:\\delme\\wasm\\wwwroot\""
+    }
+  }
+}
