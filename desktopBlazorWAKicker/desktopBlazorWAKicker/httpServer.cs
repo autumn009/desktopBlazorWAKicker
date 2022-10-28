@@ -12,7 +12,7 @@ namespace desktopBlazorWAKicker
         public HttpServer(string root, int port)
         {
             this.port = port;
-            documentRoot = root;
+            documentRoot = Path.GetFullPath(root);
         }
 
         private HttpListener? _listener = null;
@@ -51,9 +51,11 @@ namespace desktopBlazorWAKicker
                     {
                         path += "index.html";
                     }
+                    path = Path.GetFullPath(path);
 
                     var response = context.Response;
-                    if (!File.Exists(path))
+
+                    if (!pathCheck.Check(documentRoot, path) || !File.Exists(path))
                     {
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         response.ContentType = "text/plain";
